@@ -1,0 +1,8 @@
+confluent-kafka
+pandas
+pyarrow
+pyspark
+dbt-sqlserver
+requests
+minio
+python-dotenv

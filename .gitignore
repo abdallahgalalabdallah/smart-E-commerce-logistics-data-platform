@@ -1,0 +1,22 @@
+# Credentials & Secrets
+.env
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+env/
+.pytest_cache/
+
+# dbt
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+
+# Data & Temp files
+*.csv
+*.parquet
+*.json
+*.log
