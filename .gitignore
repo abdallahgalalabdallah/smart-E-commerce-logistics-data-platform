@@ -20,3 +20,4 @@ dbt_project/logs/
 *.parquet
 *.json
 *.log
+infrastructure/airflow/logs/
