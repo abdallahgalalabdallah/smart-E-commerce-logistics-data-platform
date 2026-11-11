@@ -1,5 +1,5 @@
 # 🚚 Smart E-Commerce Logistics Data Platform
-[![Data Engineering Project](https://img.shields.io/badge/Data%20Engineering-Project-blue.svg)](https://github.com)
+[![Data Engineering Project](https://img.shields.io/badge/Data%20Engineering-DataIPillProject-blue.svg)](https://github.com)
 [![Docker Compose](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 [![Apache Kafka](https://img.shields.io/badge/Apache-Kafka-231F20?logo=apachekafka&logoColor=white)](https://kafka.apache.org/)
 [![Apache Spark](https://img.shields.io/badge/Apache-Spark%20Structured%20Streaming-E25A1C?logo=apachespark&logoColor=white)](https://spark.apache.org/)
