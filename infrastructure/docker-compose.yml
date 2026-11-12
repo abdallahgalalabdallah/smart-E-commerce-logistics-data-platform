@@ -23,12 +23,11 @@ services:
       - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}
       - MSSQL_PID=${MSSQL_PID}
     ports:
-      - "${MSSQL_PORT}:1433"
+      - "14333:1433"
     volumes:
       - mssql_data:/var/opt/mssql
     networks:
       - logistics_network
-
   # -------------------------------------------------------
   # 2. Data Lake: LocalStack (AWS S3 Mock)
   # -------------------------------------------------------

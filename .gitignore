@@ -21,3 +21,8 @@ dbt_project/logs/
 *.json
 *.log
 infrastructure/airflow/logs/
+
+tmp/
+__pycache__/
+*.pyc
+.env
