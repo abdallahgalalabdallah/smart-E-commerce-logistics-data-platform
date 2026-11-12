@@ -68,7 +68,11 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
-      CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
+      CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk' 
+      KAFKA_LOG_RETENTION_HOURS: 2            # الاحتفاظ بالرسائل لمدة ساعتين فقط
+      KAFKA_LOG_RETENTION_BYTES: 536870912    # الحد الأقصى 512 ميجابايت
+      KAFKA_LOG_SEGMENT_BYTES: 104857600      # تقسيم الملفات كل 100 ميجابايت لتسريع الحذف
+      KAFKA_LOG_RETENTION_CHECK_INTERVAL_MS: 300000  # فحص الملفات للحذف كل 5 دقائق
     volumes:
       - kafka_data:/var/lib/kafka/data
     networks:
