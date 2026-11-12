@@ -33,7 +33,7 @@ services:
   # 2. Data Lake: LocalStack (AWS S3 Mock)
   # -------------------------------------------------------
   localstack:
-    image: localstack/localstack:latest
+    image: localstack/localstack:3.8
     container_name: de_datalake_s3
     restart: always
     ports:
