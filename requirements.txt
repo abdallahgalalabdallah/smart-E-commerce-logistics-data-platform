@@ -4,5 +4,5 @@ pyarrow
 pyspark
 dbt-sqlserver
 requests
-LocalStack S3 Bucket
+boto3
 python-dotenv
