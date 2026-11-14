@@ -22,7 +22,9 @@ The solution follows a **Medallion Architecture (Bronze, Silver, Gold)** and use
 
 ## System Architecture
 
-![Smart Logistics & Real-Time Delivery Architecture](docs/architecture/architecture.png)
+<p align="center">
+  <img src="docs/architecture.jpeg" alt="Smart Logistics Architecture" width="700">
+</p>
 
 
 ## 📑 Table of Contents
