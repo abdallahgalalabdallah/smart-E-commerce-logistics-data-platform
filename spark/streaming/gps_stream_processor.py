@@ -1,4 +1,5 @@
 import os
+import sys
 import pyodbc
 from dotenv import load_dotenv
 from pyspark.sql import SparkSession, Window
@@ -13,6 +14,11 @@ from pyspark.sql.types import (
     StructType, StructField, StringType, IntegerType,
     DoubleType, TimestampType
 )
+
+if sys.platform.startswith("win"):
+    os.environ["HADOOP_HOME"] = "C:\\hadoop"
+    os.environ["PATH"] += os.pathsep + "C:\\hadoop\\bin"
+
 
 load_dotenv(override=True)
 
