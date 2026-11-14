@@ -23,7 +23,7 @@ The solution follows a **Medallion Architecture (Bronze, Silver, Gold)** and use
 ## System Architecture
 
 <p align="center">
-  <img src="docs/architecture.jpeg" alt="Smart Logistics Architecture" width="700">
+  <img src="docs/architecture/architecture.jpeg" alt="Smart Logistics Architecture" width="700">
 </p>
 
 
