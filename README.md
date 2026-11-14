@@ -486,6 +486,11 @@ Grafana reads operational metrics from SQL Server monitoring tables and, where u
 - Delivery activity over time
 - Activity by hub and route
 
+
+![Executive Operations](docs/grafana_operations.png)
+
+
+
 **Dashboard 2 — Live Fleet Monitoring**
 - Geomap showing the latest simulated vehicle locations
 - Moving / idle vehicle counts
