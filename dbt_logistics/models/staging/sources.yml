@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: silver
+    database: smart_logistics_dwh
+    schema: silver
+    description: "Cleaned Olist e-commerce tables processed by Apache Spark."
+    tables:
+      - name: orders
+        description: "One row per order (99,441 rows)."
+      - name: customers
+        description: "One customer_id per order (99,441 rows); customer_unique_id identifies the person."
+      - name: order_items
+        description: "One row per item within an order (112,650 rows)."
+      - name: order_payments
+        description: "One row per payment transaction on an order (103,886 rows)."
+      - name: order_reviews
+        description: "One row per customer review (99,224 rows)."
+      - name: products
+        description: "Product catalog (32,951 rows)."
+      - name: sellers
+        description: "Seller directory (3,095 rows)."
+      - name: geolocation
+        description: "Pre-averaged coordinates per Brazilian ZIP prefix (19,015 rows)."
+      - name: category_translation
+        description: "Portuguese to English product category mapping (71 rows)."
