@@ -448,7 +448,13 @@ Spark is responsible for distributed file processing; dbt is responsible for SQL
   <img src="docs/demo/Medailian_Arch.png" alt="Smart Logistics Architecture" width="600">
 </p>
 
+--- 
+## DataLineage 
+<p align="center">
+  <img src="docs/demo/dbt_data_lineage.png" alt="Smart Logistics Architecture" width="600">
+</p>
 
+---
 ## ⏱️ Orchestration
 
 Airflow schedules and coordinates finite workflows.
