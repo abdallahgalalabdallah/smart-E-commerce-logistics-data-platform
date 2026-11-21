@@ -442,7 +442,12 @@ models/
 
 Spark is responsible for distributed file processing; dbt is responsible for SQL-based warehouse modeling. Avoid implementing the same transformation logic independently in both tools.
 
----
+--- 
+
+<p align="center">
+  <img src="docs/demo/Medailian_Arch.jpeg" alt="Smart Logistics Architecture" width="600">
+</p>
+
 
 ## ⏱️ Orchestration
 
