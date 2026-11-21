@@ -1,6 +1,6 @@
 SELECT
     
-    lower(convert(varchar(50), hashbytes('md5', coalesce(convert(varchar(8000), concat(coalesce(cast(i.order_id as VARCHAR(8000)), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(i.order_item_id as VARCHAR(8000)), '_dbt_utils_surrogate_key_null_'))), '')), 2))
+    lower(convert(varchar(50), hashbytes('md5', coalesce(convert(varchar(8000), concat(coalesce(cast(i.order_id as VARCHAR(MAX)), '_dbt_utils_surrogate_key_null_'), '-', coalesce(cast(i.order_item_id as VARCHAR(MAX)), '_dbt_utils_surrogate_key_null_'))), '')), 2))
  AS order_item_key,
     i.order_id,
     i.order_item_id,

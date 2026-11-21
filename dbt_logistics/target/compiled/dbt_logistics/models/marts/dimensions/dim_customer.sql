@@ -14,7 +14,7 @@ WITH customer_orders AS (
 )
 SELECT
     
-    lower(convert(varchar(50), hashbytes('md5', coalesce(convert(varchar(8000), coalesce(cast(customer_unique_id as VARCHAR(8000)), '_dbt_utils_surrogate_key_null_')), '')), 2))
+    lower(convert(varchar(50), hashbytes('md5', coalesce(convert(varchar(8000), coalesce(cast(customer_unique_id as VARCHAR(MAX)), '_dbt_utils_surrogate_key_null_')), '')), 2))
  AS customer_key,
     customer_unique_id,
     customer_zip_code_prefix,

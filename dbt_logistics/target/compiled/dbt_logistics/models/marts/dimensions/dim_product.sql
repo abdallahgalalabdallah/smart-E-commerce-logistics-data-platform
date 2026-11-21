@@ -1,6 +1,6 @@
 SELECT
     
-    lower(convert(varchar(50), hashbytes('md5', coalesce(convert(varchar(8000), coalesce(cast(p.product_id as VARCHAR(8000)), '_dbt_utils_surrogate_key_null_')), '')), 2))
+    lower(convert(varchar(50), hashbytes('md5', coalesce(convert(varchar(8000), coalesce(cast(p.product_id as VARCHAR(MAX)), '_dbt_utils_surrogate_key_null_')), '')), 2))
  AS product_key,
     p.product_id,
     COALESCE(ct.product_category_name_english, p.product_category_name, 'unknown') AS product_category_name_english,

@@ -11,7 +11,7 @@ WITH all_order_dates AS (
 )
 SELECT
     
-    lower(convert(varchar(50), hashbytes('md5', coalesce(convert(varchar(8000), coalesce(cast(full_date as VARCHAR(8000)), '_dbt_utils_surrogate_key_null_')), '')), 2))
+    lower(convert(varchar(50), hashbytes('md5', coalesce(convert(varchar(8000), coalesce(cast(full_date as VARCHAR(MAX)), '_dbt_utils_surrogate_key_null_')), '')), 2))
  AS date_key,
     full_date,
     YEAR(full_date) AS year_number,
