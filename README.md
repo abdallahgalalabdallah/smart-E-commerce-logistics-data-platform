@@ -445,7 +445,7 @@ Spark is responsible for distributed file processing; dbt is responsible for SQL
 --- 
 
 <p align="center">
-  <img src="docs/demo/Medailian_Arch.jpeg" alt="Smart Logistics Architecture" width="600">
+  <img src="docs/demo/Medailian_Arch.png" alt="Smart Logistics Architecture" width="600">
 </p>
 
 
