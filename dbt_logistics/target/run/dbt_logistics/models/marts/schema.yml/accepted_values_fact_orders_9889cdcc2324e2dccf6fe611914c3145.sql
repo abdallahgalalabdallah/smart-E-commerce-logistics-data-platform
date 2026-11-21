@@ -26,7 +26,7 @@
 
   
   EXEC('create view 
-    [dbo].[testview_6cb1590a2b1ecfe8cda2f079d88a9e57_2920]
+    [dbo].[testview_6cb1590a2b1ecfe8cda2f079d88a9e57_16890]
    as 
     
     
@@ -61,10 +61,10 @@ where value_field not in (
       then 'true' else 'false' end as should_error
   from (
     select * from 
-    [dbo].[testview_6cb1590a2b1ecfe8cda2f079d88a9e57_2920]
+    [dbo].[testview_6cb1590a2b1ecfe8cda2f079d88a9e57_16890]
   
   ) dbt_internal_test;
 
   EXEC('drop view 
-    [dbo].[testview_6cb1590a2b1ecfe8cda2f079d88a9e57_2920]
+    [dbo].[testview_6cb1590a2b1ecfe8cda2f079d88a9e57_16890]
   ;')

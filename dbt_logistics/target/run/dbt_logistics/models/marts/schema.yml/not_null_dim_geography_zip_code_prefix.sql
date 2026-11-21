@@ -26,7 +26,7 @@
 
   
   EXEC('create view 
-    [dbo].[testview_343f345dc54eaab8a16f0405f1925471_7073]
+    [dbo].[testview_343f345dc54eaab8a16f0405f1925471_18584]
    as 
     
     
@@ -50,10 +50,10 @@ where zip_code_prefix is null
       then 'true' else 'false' end as should_error
   from (
     select * from 
-    [dbo].[testview_343f345dc54eaab8a16f0405f1925471_7073]
+    [dbo].[testview_343f345dc54eaab8a16f0405f1925471_18584]
   
   ) dbt_internal_test;
 
   EXEC('drop view 
-    [dbo].[testview_343f345dc54eaab8a16f0405f1925471_7073]
+    [dbo].[testview_343f345dc54eaab8a16f0405f1925471_18584]
   ;')

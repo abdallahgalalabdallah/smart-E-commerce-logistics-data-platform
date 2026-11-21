@@ -26,7 +26,7 @@
 
   
   EXEC('create view 
-    [dbo].[testview_41e6d315f053fed56c66037e53b8785a_15989]
+    [dbo].[testview_41e6d315f053fed56c66037e53b8785a_16309]
    as 
     
     
@@ -50,10 +50,10 @@ where seller_id is null
       then 'true' else 'false' end as should_error
   from (
     select * from 
-    [dbo].[testview_41e6d315f053fed56c66037e53b8785a_15989]
+    [dbo].[testview_41e6d315f053fed56c66037e53b8785a_16309]
   
   ) dbt_internal_test;
 
   EXEC('drop view 
-    [dbo].[testview_41e6d315f053fed56c66037e53b8785a_15989]
+    [dbo].[testview_41e6d315f053fed56c66037e53b8785a_16309]
   ;')

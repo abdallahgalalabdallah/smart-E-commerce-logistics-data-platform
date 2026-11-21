@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: int_order_item_enriched
+    description: "Order line items enriched with English product categories, physical dimensions, and seller geography. Grain: order_id + order_item_id (112,650 rows)."
+    columns:
+      - name: order_id
+        description: "Natural order identifier."
+      - name: order_item_id
+        description: "Sequential item number within the order (1, 2, 3...)."
+      - name: product_category_name_english
+        description: "English category name; falls back to Portuguese name or 'unknown' if unmapped."
+
+  - name: int_order_payments
+    description: "Aggregates multiple payment installments/methods to one row per order_id."
+    columns:
+      - name: order_id
+        description: "Natural order identifier (unique grain)."
+        tests:
+          - unique
+          - not_null
+      - name: payment_total
+        description: "Total BRL value paid across all payment methods for the order."
+      - name: installment_count
+        description: "Maximum number of credit installments selected on the order."
+      - name: main_payment_type
+        description: "Primary payment method determined by the highest payment_value on the order."
+
+  - name: int_order_reviews
+    description: "Aggregates orders with multiple reviews to one row per order_id."
+    columns:
+      - name: order_id
+        description: "Natural order identifier (unique grain)."
+        tests:
+          - unique
+          - not_null
+      - name: avg_review_score
+        description: "Mean customer rating (1.00 to 5.00) across all reviews submitted for the order."
+      - name: review_count
+        description: "Number of distinct reviews submitted for the order."
+
+  - name: int_order_delivery_metrics
+    description: "Computes end-to-end delivery duration and SLA variance per order_id without imputing nulls."
+    columns:
+      - name: order_id
+        description: "Natural order identifier (unique grain)."
+        tests:
+          - unique
+          - not_null
+      - name: delivery_days
+        description: "Elapsed calendar days from order_purchase_timestamp to order_delivered_customer_date (NULL if undelivered)."
+      - name: delay_days
+        description: "{{ doc('delivery_delay_logic') }}"

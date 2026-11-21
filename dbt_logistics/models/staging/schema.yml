@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: stg_olist__orders
+    description: "Standardized order lifecycle timestamps and statuses from silver.orders (99,441 rows)."
+  - name: stg_olist__customers
+    description: "Order-level customer records mapping customer_id to customer_unique_id and location."
+  - name: stg_olist__order_items
+    description: "Line-item pricing, freight, product, and seller assignments per order (112,650 rows)."
+  - name: stg_olist__payments
+    description: "Payment transactions and installment counts per order (103,886 rows)."
+  - name: stg_olist__reviews
+    description: "Customer satisfaction scores (1–5) and review timestamps (99,224 rows)."
+  - name: stg_olist__products
+    description: "Product catalog attributes including weight and physical dimensions (32,951 rows)."
+  - name: stg_olist__sellers
+    description: "Seller directory with ZIP prefix, city, and state (3,095 rows)."
+  - name: stg_olist__geolocation
+    description: "Pre-averaged latitude/longitude coordinates per Brazilian ZIP prefix (19,015 rows)."
+  - name: stg_olist__category_translation
+    description: "Lookup mapping Portuguese product category names to English (71 rows)."

@@ -26,7 +26,7 @@
 
   
   EXEC('create view 
-    [dbo].[testview_5df9475f146f0d30820b6b24aa56bec8_11437]
+    [dbo].[testview_5df9475f146f0d30820b6b24aa56bec8_15335]
    as 
     
     
@@ -53,10 +53,10 @@ having count(*) > 1
       then 'true' else 'false' end as should_error
   from (
     select * from 
-    [dbo].[testview_5df9475f146f0d30820b6b24aa56bec8_11437]
+    [dbo].[testview_5df9475f146f0d30820b6b24aa56bec8_15335]
   
   ) dbt_internal_test;
 
   EXEC('drop view 
-    [dbo].[testview_5df9475f146f0d30820b6b24aa56bec8_11437]
+    [dbo].[testview_5df9475f146f0d30820b6b24aa56bec8_15335]
   ;')

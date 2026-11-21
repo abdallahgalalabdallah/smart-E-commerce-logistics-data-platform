@@ -26,7 +26,7 @@
 
   
   EXEC('create view 
-    [dbo].[testview_e6eef5fc94b5633ac538060637f09f60_5797]
+    [dbo].[testview_e6eef5fc94b5633ac538060637f09f60_5529]
    as 
     
     
@@ -64,10 +64,10 @@ where parent.to_field is null
       then 'true' else 'false' end as should_error
   from (
     select * from 
-    [dbo].[testview_e6eef5fc94b5633ac538060637f09f60_5797]
+    [dbo].[testview_e6eef5fc94b5633ac538060637f09f60_5529]
   
   ) dbt_internal_test;
 
   EXEC('drop view 
-    [dbo].[testview_e6eef5fc94b5633ac538060637f09f60_5797]
+    [dbo].[testview_e6eef5fc94b5633ac538060637f09f60_5529]
   ;')

@@ -26,7 +26,7 @@
 
   
   EXEC('create view 
-    [dbo].[testview_1d95ace7323ce19b99b7742792f3c1cb_11790]
+    [dbo].[testview_1d95ace7323ce19b99b7742792f3c1cb_3363]
    as 
     -- Fails if any delivered order has a missing delivery timestamp
 
@@ -52,10 +52,10 @@ WHERE order_status = ''delivered''
       then 'true' else 'false' end as should_error
   from (
     select * from 
-    [dbo].[testview_1d95ace7323ce19b99b7742792f3c1cb_11790]
+    [dbo].[testview_1d95ace7323ce19b99b7742792f3c1cb_3363]
   
   ) dbt_internal_test;
 
   EXEC('drop view 
-    [dbo].[testview_1d95ace7323ce19b99b7742792f3c1cb_11790]
+    [dbo].[testview_1d95ace7323ce19b99b7742792f3c1cb_3363]
   ;')

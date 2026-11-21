@@ -26,7 +26,7 @@
 
   
   EXEC('create view 
-    [dbo].[testview_4dce53b494afa755942cb2affe0eca5f_2065]
+    [dbo].[testview_4dce53b494afa755942cb2affe0eca5f_5755]
    as 
     
     
@@ -50,10 +50,10 @@ where full_date is null
       then 'true' else 'false' end as should_error
   from (
     select * from 
-    [dbo].[testview_4dce53b494afa755942cb2affe0eca5f_2065]
+    [dbo].[testview_4dce53b494afa755942cb2affe0eca5f_5755]
   
   ) dbt_internal_test;
 
   EXEC('drop view 
-    [dbo].[testview_4dce53b494afa755942cb2affe0eca5f_2065]
+    [dbo].[testview_4dce53b494afa755942cb2affe0eca5f_5755]
   ;')

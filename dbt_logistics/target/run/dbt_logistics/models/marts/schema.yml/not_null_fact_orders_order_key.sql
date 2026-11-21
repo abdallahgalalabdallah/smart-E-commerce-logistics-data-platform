@@ -26,7 +26,7 @@
 
   
   EXEC('create view 
-    [dbo].[testview_170b39e46bab0a2ee94dd9b3e505c014_8746]
+    [dbo].[testview_170b39e46bab0a2ee94dd9b3e505c014_17514]
    as 
     
     
@@ -50,10 +50,10 @@ where order_key is null
       then 'true' else 'false' end as should_error
   from (
     select * from 
-    [dbo].[testview_170b39e46bab0a2ee94dd9b3e505c014_8746]
+    [dbo].[testview_170b39e46bab0a2ee94dd9b3e505c014_17514]
   
   ) dbt_internal_test;
 
   EXEC('drop view 
-    [dbo].[testview_170b39e46bab0a2ee94dd9b3e505c014_8746]
+    [dbo].[testview_170b39e46bab0a2ee94dd9b3e505c014_17514]
   ;')

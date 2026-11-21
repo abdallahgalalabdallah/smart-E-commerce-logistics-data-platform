@@ -26,7 +26,7 @@
 
   
   EXEC('create view 
-    [dbo].[testview_176fe8d0c1ecfd411131c3250af45c8c_18068]
+    [dbo].[testview_176fe8d0c1ecfd411131c3250af45c8c_10191]
    as 
     
     
@@ -50,10 +50,10 @@ where purchase_date_key is null
       then 'true' else 'false' end as should_error
   from (
     select * from 
-    [dbo].[testview_176fe8d0c1ecfd411131c3250af45c8c_18068]
+    [dbo].[testview_176fe8d0c1ecfd411131c3250af45c8c_10191]
   
   ) dbt_internal_test;
 
   EXEC('drop view 
-    [dbo].[testview_176fe8d0c1ecfd411131c3250af45c8c_18068]
+    [dbo].[testview_176fe8d0c1ecfd411131c3250af45c8c_10191]
   ;')

@@ -2,130 +2,248 @@ version: 2
 
 models:
   - name: dim_customer
-    description: "Deduplicated customer dimension at the customer_unique_id grain."
+    description: "{{ doc('customer_grain_note') }}"
     columns:
       - name: customer_key
+        description: "Surrogate primary key generated from customer_unique_id."
         tests:
           - unique
           - not_null
       - name: customer_unique_id
+        description: "Natural unique identifier representing an individual customer across repeat purchases."
         tests:
           - unique
           - not_null
+      - name: customer_zip_code_prefix
+        description: "5-digit Brazilian postal code prefix from the customer's most recent order."
+      - name: customer_city
+        description: "Customer city name."
+      - name: customer_state
+        description: "2-letter Brazilian state abbreviation (e.g., SP, RJ, MG)."
 
   - name: dim_seller
-    description: "Seller dimension."
+    description: "Merchant/seller dimension at the seller_id grain (3,095 rows)."
     columns:
       - name: seller_key
+        description: "Surrogate primary key generated from seller_id."
         tests:
           - unique
           - not_null
       - name: seller_id
+        description: "Natural unique seller identifier."
         tests:
           - unique
           - not_null
+      - name: seller_zip_code_prefix
+        description: "5-digit Brazilian postal code prefix where the seller is registered."
+      - name: seller_city
+        description: "Seller city name."
+      - name: seller_state
+        description: "2-letter Brazilian state abbreviation."
 
   - name: dim_product
-    description: "Product dimension enriched with English category names."
+    description: "Product catalog dimension enriched with English category translations (32,951 rows)."
     columns:
       - name: product_key
+        description: "Surrogate primary key generated from product_id."
         tests:
           - unique
           - not_null
       - name: product_id
+        description: "Natural unique product identifier."
         tests:
           - unique
           - not_null
+      - name: product_category_name_english
+        description: "Standardized English product category name."
+      - name: product_weight_g
+        description: "Product package weight in grams."
+      - name: product_length_cm
+        description: "Product package length in centimeters."
+      - name: product_height_cm
+        description: "Product package height in centimeters."
+      - name: product_width_cm
+        description: "Product package width in centimeters."
+      - name: product_photos_qty
+        description: "Number of product listing photos published."
 
   - name: dim_geography
-    description: "Brazilian ZIP code prefix geography dimension."
+    description: "Geographic reference dimension keyed by 5-digit Brazilian ZIP prefix (19,015 rows)."
     columns:
       - name: geography_key
+        description: "Surrogate primary key generated from zip_code_prefix."
         tests:
           - unique
           - not_null
       - name: zip_code_prefix
+        description: "5-digit Brazilian postal code prefix (CEP prefix)."
         tests:
           - unique
           - not_null
+      - name: latitude
+        description: "Centroid latitude for the ZIP prefix."
+      - name: longitude
+        description: "Centroid longitude for the ZIP prefix."
+      - name: city
+        description: "Primary city associated with the ZIP prefix."
+      - name: state
+        description: "2-letter Brazilian state code."
 
   - name: dim_date
-    description: "Date dimension generated from order purchase and delivery timestamps."
+    description: "Calendar date dimension generated from order purchase and customer delivery dates."
     columns:
       - name: date_key
+        description: "Surrogate primary key generated from full_date."
         tests:
           - unique
           - not_null
       - name: full_date
+        description: "Calendar date (YYYY-MM-DD)."
         tests:
           - unique
           - not_null
+      - name: year_number
+        description: "4-digit calendar year."
+      - name: quarter_number
+        description: "Calendar quarter (1 to 4)."
+      - name: month_number
+        description: "Calendar month number (1 to 12)."
+      - name: month_name
+        description: "Full English month name."
+      - name: day_of_month
+        description: "Day of the month (1 to 31)."
+      - name: day_of_week
+        description: "Numeric day of the week (1 = Sunday to 7 = Saturday in SQL Server default)."
+      - name: day_name
+        description: "Full English weekday name."
+      - name: is_weekend
+        description: "Binary flag: 1 if Saturday or Sunday, 0 otherwise."
 
   - name: fact_orders
-    description: "Order-level fact table (one row per order_id)."
+    description: "Order-header fact table at the order_id grain (99,441 rows). {{ doc('fact_grain_separation') }}"
     columns:
       - name: order_key
+        description: "Surrogate primary key generated from order_id."
         tests:
           - unique
           - not_null
       - name: order_id
+        description: "Natural order identifier retained for operational debugging and lineage."
         tests:
           - unique
           - not_null
       - name: customer_key
+        description: "Foreign key to dim_customer."
         tests:
           - not_null
           - relationships:
               to: ref('dim_customer')
               field: customer_key
       - name: geography_key
+        description: "Foreign key to dim_geography based on customer ZIP prefix (nullable if ZIP prefix is absent from geolocation reference)."
         tests:
           - relationships:
               to: ref('dim_geography')
               field: geography_key
       - name: purchase_date_key
+        description: "Foreign key to dim_date for the order purchase date."
         tests:
           - not_null
           - relationships:
               to: ref('dim_date')
               field: date_key
       - name: delivered_date_key
+        description: "Foreign key to dim_date for the customer delivery date (NULL for undelivered orders)."
         tests:
           - relationships:
               to: ref('dim_date')
               field: date_key
       - name: order_status
+        description: "Current fulfillment lifecycle status of the order."
         tests:
           - not_null
           - accepted_values:
               values: ['delivered', 'shipped', 'canceled', 'unavailable', 'invoiced', 'processing', 'created', 'approved']
+      - name: item_count
+        description: "Total count of line items purchased in the order."
+      - name: freight_total
+        description: "Total shipping/freight charges across all items in the order (BRL)."
+      - name: payment_total
+        description: "Total payment value collected for the order across all payment transactions (BRL)."
+      - name: installment_count
+        description: "Maximum number of payment installments used on the order."
       - name: main_payment_type
+        description: "Dominant payment method by BRL value."
         tests:
           - accepted_values:
               values: ['credit_card', 'boleto', 'voucher', 'debit_card', 'not_defined']
+      - name: avg_review_score
+        description: "Average customer review rating (1–5) for the order."
+      - name: review_count
+        description: "Number of customer reviews associated with the order."
+      - name: delivery_days
+        description: "Total calendar days from purchase to customer delivery (NULL if undelivered)."
+      - name: delay_days
+        description: "{{ doc('delivery_delay_logic') }}"
 
   - name: fact_order_items
-    description: "Order line-item fact table (one row per order_id + order_item_id)."
+    description: "Order line-item fact table at the order_id + order_item_id grain (112,650 rows). {{ doc('fact_grain_separation') }}"
     columns:
       - name: order_item_key
+        description: "Surrogate primary key generated from order_id and order_item_id."
         tests:
           - unique
           - not_null
+      - name: order_id
+        description: "Natural order identifier retained for debugging."
+      - name: order_item_id
+        description: "Sequential item line number within the order."
       - name: order_key
+        description: "Foreign key linking to fact_orders."
         tests:
           - not_null
           - relationships:
               to: ref('fact_orders')
               field: order_key
       - name: product_key
+        description: "Foreign key linking to dim_product."
         tests:
           - not_null
           - relationships:
               to: ref('dim_product')
               field: product_key
       - name: seller_key
+        description: "Foreign key linking to dim_seller."
         tests:
           - not_null
           - relationships:
               to: ref('dim_seller')
               field: seller_key
+      - name: shipping_limit_date
+        description: "Seller deadline timestamp to hand the package over to the logistics carrier."
+      - name: price
+        description: "Unit item sale price excluding freight (BRL)."
+      - name: freight_value
+        description: "Item-level shipping charge (BRL)."
+
+  - name: agg_daily_logistics_summary
+    description: "Pre-aggregated daily and state-level logistics KPI summary table optimized for Power BI executive cards."
+    columns:
+      - name: purchase_date
+        description: "Order purchase calendar date."
+      - name: customer_state
+        description: "2-letter Brazilian customer state code."
+      - name: total_orders
+        description: "Count of orders placed."
+      - name: total_items
+        description: "Sum of items ordered."
+      - name: total_revenue
+        description: "Sum of payment_total (BRL)."
+      - name: total_freight
+        description: "Sum of freight_total (BRL)."
+      - name: avg_delivery_days
+        description: "Mean delivery duration in days for delivered orders."
+      - name: avg_delay_days
+        description: "Mean SLA variance in days (positive = late, negative = early)."
+      - name: avg_review_score
+        description: "Mean customer satisfaction score."

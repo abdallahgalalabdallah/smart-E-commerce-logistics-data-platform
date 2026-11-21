@@ -26,7 +26,7 @@
 
   
   EXEC('create view 
-    [dbo].[testview_5dbe159c698b56c5f0e54107d2c2f1f3_17870]
+    [dbo].[testview_5dbe159c698b56c5f0e54107d2c2f1f3_18966]
    as 
     
     
@@ -50,10 +50,10 @@ where geography_key is null
       then 'true' else 'false' end as should_error
   from (
     select * from 
-    [dbo].[testview_5dbe159c698b56c5f0e54107d2c2f1f3_17870]
+    [dbo].[testview_5dbe159c698b56c5f0e54107d2c2f1f3_18966]
   
   ) dbt_internal_test;
 
   EXEC('drop view 
-    [dbo].[testview_5dbe159c698b56c5f0e54107d2c2f1f3_17870]
+    [dbo].[testview_5dbe159c698b56c5f0e54107d2c2f1f3_18966]
   ;')

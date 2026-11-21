@@ -26,7 +26,7 @@
 
   
   EXEC('create view 
-    [dbo].[testview_bed4fb4d82d652cdc0fdbf87407c9adb_1664]
+    [dbo].[testview_bed4fb4d82d652cdc0fdbf87407c9adb_10761]
    as 
     
     
@@ -50,10 +50,10 @@ where customer_unique_id is null
       then 'true' else 'false' end as should_error
   from (
     select * from 
-    [dbo].[testview_bed4fb4d82d652cdc0fdbf87407c9adb_1664]
+    [dbo].[testview_bed4fb4d82d652cdc0fdbf87407c9adb_10761]
   
   ) dbt_internal_test;
 
   EXEC('drop view 
-    [dbo].[testview_bed4fb4d82d652cdc0fdbf87407c9adb_1664]
+    [dbo].[testview_bed4fb4d82d652cdc0fdbf87407c9adb_10761]
   ;')
